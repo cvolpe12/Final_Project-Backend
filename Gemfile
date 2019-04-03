@@ -26,7 +26,12 @@ gem 'puma', '~> 3.11'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-# gem 'rack-cors'
+gem 'rack-cors'
+
+gem 'rest-client', '~> 2.0', '>= 2.0.2'
+
+gem 'mysportsfeeds-ruby', '~> 0.1.0'
+gem 'rb-readline', '~> 0.5.3'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

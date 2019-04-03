@@ -7,37 +7,6 @@ class Player < ApplicationRecord
   has_many :drafts
   has_many :teams, through: :drafts
 
-  # msf = MySportsFeeds.new(version="1.0", true)
-  #
-  # msf.authenticate("cvolpe", "8m^KgSir3uLpE^l")
-  #
-  # # data = msf.msf_get_data('mlb', '2019-regular', 'cumulative_player_stats', 'json', 'team' => 'new-york-yankees')
-  # data = msf.msf_get_data('nba', '2016-2017-regular', 'player_gamelogs', 'json', 'player' =>'stephen-curry')
-  # puts data
-
-  # RestClient.get("https://api.mysportsfeeds.com/v2.1/pull/mlb/2019-regular/player_stats_totals.json")
-
-  def self.create_player
-    self.send_request
-    self.call_teams
-    @currentRoster.each do |player|
-      Player.create(
-        first_name: player["player"]["firstName"],
-        last_name: player["player"]["lastName"],
-        team: player["player"]["currentTeam"]["abbreviation"],
-        position: player["player"]["primaryPosition"],
-        batting_stance: player["player"]["handedness"]["bats"],
-        season_batting_avg: player["stats"]["batting"]["battingAvg"],
-        season_slugging_pct: player["stats"]["batting"]["batterSluggingPct"],
-        season_hits: player["stats"]["batting"]["hits"],
-        season_doubles: player["stats"]["batting"]["secondBaseHits"],
-        season_triples: player["stats"]["batting"]["thirdBaseHits"],
-        season_home_runs: player["stats"]["batting"]["homeRuns"],
-        season_runs: player["stats"]["batting"]["runs"],
-        season_rbi: player["stats"]["batting"]["runsBattedIn"]
-      )
-    end
-  end
 
   def self.call_teams
     self.send_request

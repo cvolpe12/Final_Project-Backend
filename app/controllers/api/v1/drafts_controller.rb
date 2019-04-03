@@ -20,8 +20,6 @@ class Api::V1::DraftsController < ApplicationController
     head :no_content
   end
 
-
-
   private
 
   def draft_params

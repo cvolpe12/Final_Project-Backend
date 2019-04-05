@@ -7,6 +7,13 @@
 # #   Character.create(name: 'Luke', movie: movies.first)
 puts "begin seed"
 Player.delete_all
+Team.delete_all
+League.delete_all
+User.delete_all
+Draft.delete_all
+
+User.create(username: "user")
+League.create(name: "league", participants: 2)
 
 Player.call_teams.each do |player|
   Player.create(player)

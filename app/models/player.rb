@@ -24,9 +24,10 @@ class Player < ApplicationRecord
           season_hits: player["stats"]["batting"]["hits"],
           season_doubles: player["stats"]["batting"]["secondBaseHits"],
           season_triples: player["stats"]["batting"]["thirdBaseHits"],
-          season_home_runs: player["stats"]["batting"]["homeRuns"],
+          season_home_runs: player["stats"]["batting"]["homeruns"],
           season_runs: player["stats"]["batting"]["runs"],
-          season_rbi: player["stats"]["batting"]["runsBattedIn"]
+          season_rbi: player["stats"]["batting"]["runsBattedIn"],
+          season_walks: player["stats"]["batting"]["batterWalks"]
         }
         # name = player["player"]["firstName"] + player["player"]["lastName"]
         @currentRoster.push(newPlayer)

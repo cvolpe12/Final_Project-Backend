@@ -14,6 +14,7 @@ Draft.delete_all
 
 User.create(username: "user")
 League.create(name: "league", participants: 2)
+Team.create(user_id: 1, league_id: 1)
 
 Player.call_teams.each do |player|
   Player.create(player)

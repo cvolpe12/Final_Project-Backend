@@ -1,5 +1,5 @@
 class Api::V1::TeamsController < ApplicationController
-  before_action :find_team, only: [:update, :destroy]
+  before_action :find_team, only: [:show, :update, :destroy]
 
   def index
     @teams = Team.all
@@ -13,6 +13,10 @@ class Api::V1::TeamsController < ApplicationController
     else
       render json: { errors: @team.errors.full_messages }, status: :unprocessible_entity
     end
+  end
+
+  def show
+    render json: @team
   end
 
   def update

@@ -1,5 +1,5 @@
 class Api::V1::DraftsController < ApplicationController
-  before_action :find_draft, only [:destroy]
+  before_action :find_draft, only: [:destroy]
 
   def index
     @drafts = Draft.all

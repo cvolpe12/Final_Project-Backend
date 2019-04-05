@@ -13,22 +13,41 @@ class Player < ApplicationRecord
     @currentRoster = []
     @team.fetch("playerStatsTotals").each do |player|
       if player["player"]["currentRosterStatus"] == "ROSTER" && player["player"]["primaryPosition"] != "P"
-        newPlayer = {
-          first_name: player["player"]["firstName"],
-          last_name: player["player"]["lastName"],
-          team: player["player"]["currentTeam"]["abbreviation"],
-          position: player["player"]["primaryPosition"],
-          batting_stance: player["player"]["handedness"]["bats"],
-          season_batting_avg: player["stats"]["batting"]["battingAvg"],
-          season_slugging_pct: player["stats"]["batting"]["batterSluggingPct"],
-          season_hits: player["stats"]["batting"]["hits"],
-          season_doubles: player["stats"]["batting"]["secondBaseHits"],
-          season_triples: player["stats"]["batting"]["thirdBaseHits"],
-          season_home_runs: player["stats"]["batting"]["homeruns"],
-          season_runs: player["stats"]["batting"]["runs"],
-          season_rbi: player["stats"]["batting"]["runsBattedIn"],
-          season_walks: player["stats"]["batting"]["batterWalks"]
-        }
+        if player["player"]["primaryPosition"] == "RF" || player["player"]["primaryPosition"] == "LF" || player["player"]["primaryPosition"] == "CF"
+          newPlayer = {
+            first_name: player["player"]["firstName"],
+            last_name: player["player"]["lastName"],
+            team: player["player"]["currentTeam"]["abbreviation"],
+            position: "OF",
+            batting_stance: player["player"]["handedness"]["bats"],
+            season_batting_avg: player["stats"]["batting"]["battingAvg"],
+            season_slugging_pct: player["stats"]["batting"]["batterSluggingPct"],
+            season_hits: player["stats"]["batting"]["hits"],
+            season_doubles: player["stats"]["batting"]["secondBaseHits"],
+            season_triples: player["stats"]["batting"]["thirdBaseHits"],
+            season_home_runs: player["stats"]["batting"]["homeruns"],
+            season_runs: player["stats"]["batting"]["runs"],
+            season_rbi: player["stats"]["batting"]["runsBattedIn"],
+            season_walks: player["stats"]["batting"]["batterWalks"]
+          }
+        else
+          newPlayer = {
+            first_name: player["player"]["firstName"],
+            last_name: player["player"]["lastName"],
+            team: player["player"]["currentTeam"]["abbreviation"],
+            position: player["player"]["primaryPosition"],
+            batting_stance: player["player"]["handedness"]["bats"],
+            season_batting_avg: player["stats"]["batting"]["battingAvg"],
+            season_slugging_pct: player["stats"]["batting"]["batterSluggingPct"],
+            season_hits: player["stats"]["batting"]["hits"],
+            season_doubles: player["stats"]["batting"]["secondBaseHits"],
+            season_triples: player["stats"]["batting"]["thirdBaseHits"],
+            season_home_runs: player["stats"]["batting"]["homeruns"],
+            season_runs: player["stats"]["batting"]["runs"],
+            season_rbi: player["stats"]["batting"]["runsBattedIn"],
+            season_walks: player["stats"]["batting"]["batterWalks"]
+          }
+        end
         # name = player["player"]["firstName"] + player["player"]["lastName"]
         @currentRoster.push(newPlayer)
       end

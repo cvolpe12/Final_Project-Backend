@@ -13,7 +13,7 @@ User.delete_all
 Draft.delete_all
 
 User.create(username: "user")
-League.create(name: "league", participants: 2)
+League.create(name: "league", participants: 2, limit: 60000, player_source: "MLB")
 Team.create(user_id: 1, league_id: 1)
 
 Player.call_teams.each do |player|

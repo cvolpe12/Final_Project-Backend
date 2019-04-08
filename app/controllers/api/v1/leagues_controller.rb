@@ -1,4 +1,5 @@
 class Api::V1::LeaguesController < ApplicationController
+  before_action :find_league, only: [:show]
 
   def index
     @leagues = League.all
@@ -12,6 +13,10 @@ class Api::V1::LeaguesController < ApplicationController
     else
       render json: { errors: @league.errors.full_messages }, status: :unprocessible_entity
     end
+  end
+
+  def show
+    render json: @league
   end
 
   private

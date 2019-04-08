@@ -12,7 +12,7 @@ League.delete_all
 User.delete_all
 Draft.delete_all
 
-User.create(username: "user")
+User.create(username: "user", password: "123", name: "user", email: "user@user.com")
 League.create(name: "league", participants: 2, limit: 60000, player_source: "MLB")
 Team.create(user_id: 1, league_id: 1)
 

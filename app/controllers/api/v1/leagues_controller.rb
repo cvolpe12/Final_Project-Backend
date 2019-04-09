@@ -22,7 +22,7 @@ class Api::V1::LeaguesController < ApplicationController
   private
 
   def league_params
-    params.permit(:name, :participants, :limit, :player_source)
+    params.permit(:name, :participants, :limit, :player_source, :date_of_games)
   end
 
   def find_league

@@ -5,7 +5,7 @@ class ApplicationController < ActionController::API
      # -> send back user id
 
  def encode_token(payload)
-   byebug
+   # byebug
    JWT.encode(payload, "secret")
    # ENV['KEY']
    # payload {user_id: 1}
@@ -16,6 +16,7 @@ class ApplicationController < ActionController::API
    # if headers -> let's decode it else return nil
    # JWT.decode()
    # no need to check if there are headers because of the begin rescue!!
+   # byebug
    begin
      JWT.decode(auth_headers, "secret")
      # ENV['KEY']
@@ -26,11 +27,13 @@ class ApplicationController < ActionController::API
 
  def auth_headers
    # check for headers
+   # byebug
    request.headers["Authorization"]
    # returns the JWT
  end
 
  def curr_user
+   # byebug
    user_id = decode_token[0]["user_id"]
    User.find(user_id)
    # who is the current user maybe we don't need to authorize the route but it might be nice to know

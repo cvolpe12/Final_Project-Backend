@@ -7,16 +7,19 @@ class Player < ApplicationRecord
   has_many :drafts
   has_many :teams, through: :drafts
 
+  # def concat_name(player)
+  #   player["player"]["firstName"] + " " + player["player"]["lastName"]
+  # end
 
   def self.call_teams
     self.send_request
     @currentRoster = []
     @team.fetch("playerStatsTotals").each do |player|
+      # full_name = concat_name(player)
       if player["player"]["currentRosterStatus"] == "ROSTER" && player["player"]["primaryPosition"] != "P"
         if player["player"]["primaryPosition"] == "RF" || player["player"]["primaryPosition"] == "LF" || player["player"]["primaryPosition"] == "CF"
           newPlayer = {
-            first_name: player["player"]["firstName"],
-            last_name: player["player"]["lastName"],
+            name: player["player"]["firstName"] + " " + player["player"]["lastName"],
             team: player["player"]["currentTeam"]["abbreviation"],
             position: "OF",
             batting_stance: player["player"]["handedness"]["bats"],
@@ -32,8 +35,7 @@ class Player < ApplicationRecord
           }
         else
           newPlayer = {
-            first_name: player["player"]["firstName"],
-            last_name: player["player"]["lastName"],
+            name: player["player"]["firstName"] + " " + player["player"]["lastName"],
             team: player["player"]["currentTeam"]["abbreviation"],
             position: player["player"]["primaryPosition"],
             batting_stance: player["player"]["handedness"]["bats"],

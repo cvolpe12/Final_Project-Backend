@@ -36,7 +36,7 @@ class Api::V1::TeamsController < ApplicationController
   private
 
   def team_params
-    params.permit(:user_id, :league_id)
+    params.permit(:user_id, :league_id, :entered)
   end
 
   def find_team

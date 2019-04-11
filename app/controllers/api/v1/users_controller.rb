@@ -7,7 +7,7 @@ class Api::V1::UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    byebug
+    # byebug
     if @user.save
       # JWT.encode(payload, 'secret')
 			jwt = encode_token({user_id: @user.id})

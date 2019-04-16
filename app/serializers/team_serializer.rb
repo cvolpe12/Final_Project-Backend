@@ -1,6 +1,7 @@
 class TeamSerializer < ActiveModel::Serializer
   attributes :id, :user_id, :league_id, :entered, :players
-  has_many :players
+  belongs_to :user
+  # has_many :players
   # has_many :drafts
   def players
     # byebug

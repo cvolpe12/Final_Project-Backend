@@ -15,6 +15,12 @@ Draft.delete_all
 User.create(username: "user", password: "123", name: "user", email: "user@user.com")
 User.create(username: "test", password: "123", name: "test", email: "test@test.com")
 League.create(name: "league", participants: 2, limit: 60000, player_source: "MLB", date_of_games: "20190405")
+League.create(name: "league 2", participants: 4, limit: 60000, player_source: "MLB", date_of_games: "20190405")
+League.create(name: "league 3", participants: 6, limit: 60000, player_source: "MLB", date_of_games: "20190405")
+League.create(name: "league 4", participants: 8, limit: 60000, player_source: "MLB", date_of_games: "20190405")
+League.create(name: "league 5", participants: 2, limit: 60000, player_source: "MLB", date_of_games: "20190405")
+League.create(name: "league 6", participants: 10, limit: 60000, player_source: "MLB", date_of_games: "20190405")
+League.create(name: "league 7", participants: 100, limit: 60000, player_source: "MLB", date_of_games: "20190405")
 
 Player.call_teams.each do |player|
   Player.create(player)

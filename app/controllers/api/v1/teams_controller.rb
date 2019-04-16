@@ -1,5 +1,5 @@
 class Api::V1::TeamsController < ApplicationController
-  before_action :find_team, only: [:show, :update, :destroy]
+  before_action :find_team, only: [:show, :submit_team, :update, :destroy]
 
   def index
     @teams = Team.all
@@ -19,8 +19,20 @@ class Api::V1::TeamsController < ApplicationController
     render json: @team
   end
 
+  def submit_team
+    @team.update(team_params)
+    @team.get_daily_stats
+    # byebug
+    if @team.save
+      render json: @team, status: :accepted
+    else
+      render json: { errors: @team.errors.full_messages }, status: :unprocessible_entity
+    end
+  end
+
   def update
     @team.update(team_params)
+    # @team.get_daily_stats
     if @team.save
       render json: @team, status: :accepted
     else

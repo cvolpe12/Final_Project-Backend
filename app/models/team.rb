@@ -12,26 +12,33 @@ class Team < ApplicationRecord
   def get_daily_stats
     if self.entered == true
       self.send_request
-      self.players.each do |player|
+      # updatedPlayers = []
+      self.players.each do |player| #map?
         @all_players.fetch("gamelogs").each do |dailyPlayer|
           dp_name = dailyPlayer["player"]["firstName"] + " " + dailyPlayer["player"]["lastName"]
-            # byebug
           if player.name == dp_name
-            player["game_hits"]= dailyPlayer["stats"]["batting"]["hits"],
-            player["game_doubles"]= dailyPlayer["stats"]["batting"]["secondBaseHits"],
-            player["game_triples"]= dailyPlayer["stats"]["batting"]["thirdBaseHits"],
-            player["game_home_runs"]= dailyPlayer["stats"]["batting"]["homeruns"],
-            player["game_runs"]= dailyPlayer["stats"]["batting"]["runs"],
-            player["game_rbi"]= dailyPlayer["stats"]["batting"]["runsBattedIn"],
+            # byebug
+            player["game_hits"]= dailyPlayer["stats"]["batting"]["hits"]
+            puts player["game_hits"]
+            player["game_doubles"]= dailyPlayer["stats"]["batting"]["secondBaseHits"]
+            player["game_triples"]= dailyPlayer["stats"]["batting"]["thirdBaseHits"]
+            player["game_home_runs"]= dailyPlayer["stats"]["batting"]["homeruns"]
+            player["game_runs"]= dailyPlayer["stats"]["batting"]["runs"]
+            player["game_rbi"]= dailyPlayer["stats"]["batting"]["runsBattedIn"]
             player["game_walks"]= dailyPlayer["stats"]["batting"]["batterWalks"]
           else
             nil
           end #end of name condition
         end #end of all_players do
-        byebug
-        player
+        puts "outside loop #{player["game_hits"]}"
+        puts "saving player"
+        puts player.save
+        # updatedPlayers.push(player)
       end #end of self do
     end #end of if
+    # byebug
+    # self.players = updatedPlayers
+    # self.save
   end #end of method
 
   def send_request

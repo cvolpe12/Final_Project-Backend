@@ -69,7 +69,7 @@ class Player < ApplicationRecord
     # Create Request
     req =  Net::HTTP::Get.new(uri)
     # Add headers
-    req.add_field "Authorization", "Basic " + Base64.encode64("b97d4ddc-f321-40b5-a2e4-784878" + ":" + "MYSPORTSFEEDS")
+    req.add_field "Authorization", "Basic " + Base64.encode64(ENV["API_KEY"] + ":" + ENV["API_PASSWORD"])
 
     # Fetch Request
     res = http.request(req)
